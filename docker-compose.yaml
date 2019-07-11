@@ -5,7 +5,7 @@ services:
      image: nginx:latest
      volumes:
      - type: bind
-       source: /home/owen/quad-base/nginx.conf
+       source: ./nginx.conf
        target: /etc/nginx/nginx.conf
      ports:
      - target: 80
