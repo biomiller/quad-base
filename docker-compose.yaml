@@ -2,18 +2,36 @@
 version: '3.7'
 services:
     nginx:
-      
-      depends_on:
-        
+     image: nginx:latest
+     volumes:
+     - type: bind
+       source: ./nginx.conf
+       target: /etc/nginx/nginx.conf
+     ports:
+     - target: 80
+       protocol: tcp
+       published: 80
+     depends_on:
+      - client
+      - server
+      - mongo
     server:
-      
+     image: localhost:5000/client
+     build:
+     - context: ./server
+     depends_on:
+      - mongo
     client:
-      
-      
-      environment:
-      - REACT_APP_SERVICE_HOST=${REACT_APP_SERVICE_HOST}
+     image: localhost:5000/client
+     build:
+     - context: ./client
+     environment:
+     - REACT_APP_SERVICE_HOST=${REACT_APP_SERVICE_HOST}
+     depends_on:
+      - server
+      - mongo
     mongo:
-      
+     image: mongo:latest
     mongo-seed:
       image: fvilers/mongo-seed:1.0.0
       environment:
@@ -24,6 +42,6 @@ services:
       command:
       - "mongoimport --host mongo --port 27017 --db test --mode upsert --type json --file /data/account.json --jsonArray"
 
-  
+
 ...
 
