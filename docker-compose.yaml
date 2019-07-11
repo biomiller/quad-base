@@ -12,24 +12,22 @@ services:
        protocol: tcp
        published: 80
      depends_on:
-      - client
-      - server
-      - mongo
+     - client
+     - server
+     - mongo
     server:
      image: localhost:5000/server
-     build:
-     - context: ./server
+     build: ./server
      depends_on:
-      - mongo
+     - mongo
     client:
      image: localhost:5000/client
-     build:
-     - context: ./client
+     build: ./client
      environment:
      - REACT_APP_SERVICE_HOST=${REACT_APP_SERVICE_HOST}
      depends_on:
-      - server
-      - mongo
+     - server
+     - mongo
     mongo:
      image: mongo:latest
     mongo-seed:
