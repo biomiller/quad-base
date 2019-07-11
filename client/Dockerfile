@@ -1,14 +1,19 @@
-#Use a base node image
+FROM node:10 as node
 
-#copy contents into image
+WORKDIR /image
 
-#execute command to download dependancies
-# execute command to construct node project
+COPY . .
 
-# use a new image
+RUN ["npm", "install"]
 
-# copy through the build directory created in a previous step
+RUN ["npm", "run", "build"]
 
-# run the command to download dependacies - but append it with -g serve
+FROM node:10 as node-serve
 
-# create an entrypoint instruction - it will take 3 arguments "serve"(make sure you get the correct location), "-l", and a port number
+COPY --from=node /image/build .
+
+RUN ["npm", "install", "-g", "serve"]
+
+EXPOSE 3000
+
+ENTRYPOINT ["/usr/local/bin/serve", "-l", "3000"]
