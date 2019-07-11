@@ -1,3 +1,13 @@
-#Very similar to the springboot hello world Dockerfile
+FROM maven:latest AS maven
 
-#try to use a multi stage file
+COPY . .
+
+RUN ["mvn", "package"]
+
+FROM java:8
+
+COPY --from=maven target/Spring_Day_Two-0.0.1-SNAPSHOT.jar /opt/Spring_Day_Two-0.0.1-SNAPSHOT.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "/opt/Spring_Day_Two-0.0.1-SNAPSHOT.jar"]
