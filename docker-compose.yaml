@@ -45,11 +45,9 @@ services:
       deploy:
        placement:
         constraints: [node.role == manager]
-       restart_policy:
-        condition: on-failure
-      restart: on-failure
       depends_on:
       - mongo
+      restart: on-failure
 
 
 ...
