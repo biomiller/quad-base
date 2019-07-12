@@ -45,11 +45,11 @@ services:
       deploy:
        restart_policy:
         max_attempts: 0
-      depends_on:
-      - mongo
-      deploy:
        placement:
         constraints: [node.role == manager]
+      depends_on:
+      - mongo
+
 
 ...
 
