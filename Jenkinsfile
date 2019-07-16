@@ -14,8 +14,8 @@ pipeline{
                 }
 		stage('---patches---'){
                         steps{
-                                sh "kubectl patch deployment server -p "{"spec":{"template":{"metadata":{"creationTimestamp":"date --utc '+%FT%TZ'"}}}}""
-				sh "kubectl patch deployment web -p "{"spec":{"template":{"metadata":{"creationTimestamp":"date --utc '+%FT%TZ'"}}}}""
+                                sh "kubectl patch deployment server -p '{"spec":{"template":{"metadata":{"creationTimestamp":"date --utc '+%FT%TZ'"}}}}"'
+				sh "kubectl patch deployment web -p '{"spec":{"template":{"metadata":{"creationTimestamp":"date --utc '+%FT%TZ'"}}}}"'
 
                         }
                 }
