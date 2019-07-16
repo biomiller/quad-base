@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: client
-        image: bobcrutchley/quad-client
+        image: biomiller/quad-client
         ports:
         - containerPort: 3000

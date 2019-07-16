@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: server
-        image: bobcrutchley/quad-server
+        image: biomiller/quad-server
         ports:
         - containerPort: 8080
         env:
