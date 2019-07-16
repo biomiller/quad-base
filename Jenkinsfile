@@ -12,10 +12,10 @@ pipeline{
                                 sh "sudo docker push biomiller/quad-client"
                         }
                 }
-		stage('---apply_server ---'){
+		stage('---patches---'){
                         steps{
-                                sh "kubectl patch deployment server -p \"{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}\""
-				sh "kubectl patch deployment client -p \"{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}\""
+                                sh "kubectl patch deployment server -p '{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}\"'
+				sh "kubectl patch deployment client -p '{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}\"'
 
                         }
                 }
