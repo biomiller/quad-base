@@ -14,8 +14,8 @@ pipeline{
                 }
 		stage('---patches---'){
                         steps{
-                                sh 'kubectl patch deployment server -p \'{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"Date()\"}}}}}\''
-				sh 'kubectl patch deployment client -p \'{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"Date()\"}}}}}\''
+                                sh 'kubectl patch deployment server -p \'{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":Date()}}}}}\''
+				sh 'kubectl patch deployment client -p \'{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":Date()}}}}}\''
                         }
                 }
 		stage('---apply_server ---'){
