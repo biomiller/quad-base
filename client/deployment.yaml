@@ -16,5 +16,6 @@ spec:
       containers:
       - name: client
         image: biomiller/quad-client
+        imagePullPolicy: "Always"
         ports:
         - containerPort: 3000
