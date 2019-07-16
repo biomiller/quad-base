@@ -8,11 +8,12 @@ metadata:
 spec:
   securityContext:
     fsGroup: 1000
+  serviceAccount: jenkins-service-account
   containers:
     - name: jenkins
       securityContext:
         runAsUser: 1000
-      image: jenkins/jenkins:latest
+      image: bobcrutchley/jenkins:latest
       ports:
       - containerPort: 8080
       env:
@@ -21,7 +22,13 @@ spec:
       volumeMounts:
         - mountPath: "/var/jenkins_home"
           name: jenkins-home
+        - mountPath: "/var/run/docker.sock"
+          name: docker-socket
   volumes:
     - name: jenkins-home
       persistentVolumeClaim:
         claimName: jenkins-home
+    - name: docker-socket
+      hostPath:
+        path: /var/run/docker.sock
+        type: File
