@@ -16,6 +16,7 @@ spec:
       containers:
       - name: server
         image: biomiller/quad-server
+        imagePullPolicy: "Always"
         ports:
         - containerPort: 8080
         env:
