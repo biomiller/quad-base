@@ -16,12 +16,12 @@ services:
      - server
      - mongo
     server:
-     image: localhost:5000/server
+     image: biomiller/quad-server
      build: ./server
      depends_on:
      - mongo
     client:
-     image: localhost:5000/client
+     image: biomiller/quad-client
      build: ./client
      environment:
      - REACT_APP_SERVICE_HOST=${REACT_APP_SERVICE_HOST}
